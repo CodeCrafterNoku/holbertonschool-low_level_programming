@@ -7,3 +7,6 @@ void puts2(char *str);
 #endif
 void puts_half(char *str);
 void puts_half(char *str);
+void print_array(int *a, int n);
+void print_array(int *a, int n);
+void print_array(int *a, int n);
