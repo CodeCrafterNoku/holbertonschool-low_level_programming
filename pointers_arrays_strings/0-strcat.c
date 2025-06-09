@@ -8,24 +8,24 @@
  */
 char *_strcat(char *dest, char *src)
 {
-    char *ptr = dest;
+ char *ptr = dest;
 
-    /* Move to the end of the destination string */
-    while (*ptr != '\0')
-    {
-        ptr++;
-    }
+ /* Move to the end of the destination string */
+ while (*ptr != '\0')
+ {
+ ptr++;
+ }
 
-    /* Copy the source string to the end of the destination string */
-    while (*src != '\0')
-    {
-        *ptr = *src;
-        ptr++;
-        src++;
-    }
+ /* Copy the source string to the end of the destination string */
+ while (*src != '\0')
+ {
+ *ptr = *src;
+ ptr++;
+ src++;
+ }
 
-    /* Add the terminating null byte */
-    *ptr = '\0';
+ /* Add the terminating null byte */
+ *ptr = '\0';
 
-    return (dest);
+ return (dest);
 }
