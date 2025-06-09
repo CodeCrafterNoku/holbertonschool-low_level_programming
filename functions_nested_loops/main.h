@@ -8,3 +8,4 @@ int _isdigit(int c);
 
 #endif /* MAIN_H */
 int print_sign(int n);
+int _abs(int);
