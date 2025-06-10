@@ -2,46 +2,50 @@
 #include <stdlib.h>
 
 /**
- * str_concat - Concatenates two strings.
- * @s1: The first string.
- * @s2: The second string.
+ * _strlen - Calculates length of a string
+ * @s: The string to measure
  *
- * Return: Pointer to a newly allocated space in memory
- * containing the concatenated strings, or NULL on failure.
+ * Return: Length of string
+ */
+int _strlen(char *s)
+{
+	int len = 0;
+
+	if (s == NULL)
+		return (0);
+
+	while (s[len])
+		len++;
+
+	return (len);
+}
+
+/**
+ * str_concat - Concatenates two strings
+ * @s1: First string
+ * @s2: Second string
+ *
+ * Return: Pointer to concatenated string, NULL on failure
  */
 char *str_concat(char *s1, char *s2)
 {
-    char *result;
-    unsigned int len1 = 0, len2 = 0, i;
+	char *concat;
+	int len1, len2, i, j;
 
-    /* Handle NULL inputs */
-    if (s1 != NULL)
-    {
-        while (s1[len1])
-            len1++;
-    }
-    
-    if (s2 != NULL)
-    {
-        while (s2[len2])
-            len2++;
-    }
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
 
-    /* Allocate memory for the concatenated string */
-    result = malloc(sizeof(char) * (len1 + len2 + 1));
-    if (result == NULL)
-        return (NULL);
-    
-    /* Copy s1 to result */
-    for (i = 0; i < len1; i++)
-        result[i] = s1[i];
+	concat = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (concat == NULL)
+		return (NULL);
 
-    /* Copy s2 to result */
-    for (i = 0; i < len2; i++)
-        result[len1 + i] = s2[i];
+	for (i = 0; i < len1; i++)
+		concat[i] = s1[i];
 
-    /* Null terminate the concatenated string */
-    result[len1 + len2] = '\0';
+	for (j = 0; j < len2; j++)
+		concat[i + j] = s2[j];
 
-    return (result);
+	concat[i + j] = '\0';
+
+	return (concat);
 }
