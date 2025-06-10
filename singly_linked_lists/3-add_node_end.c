@@ -1,6 +1,6 @@
 #include "lists.h"
 #include <stdlib.h> /* For malloc, free */
-#include <string.h> /* For strdup, strlen */
+#include <string.h> /* For strdup */
 
 /**
  * create_new_node - Helper to create and initialize a new list_t node.
@@ -12,6 +12,7 @@ static list_t *create_new_node(const char *str)
 {
 	list_t *new_node;
 	unsigned int len = 0;
+	const char *temp_str;
 
 	new_node = malloc(sizeof(list_t));
 	if (new_node == NULL)
@@ -27,7 +28,11 @@ static list_t *create_new_node(const char *str)
 			free(new_node);
 			return (NULL);
 		}
-		len = strlen(str);
+		temp_str = str; /* Use temp_str to calculate length without modifying str */
+		while (temp_str[len]) /* Manually calculate length, no strlen */
+		{
+			len++;
+		}
 	}
 	else
 	{
