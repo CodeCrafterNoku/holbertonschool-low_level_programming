@@ -1,53 +1,44 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include "variadic_functions.h"
 
 /**
- * print_all - Prints anything based on format specifiers
- * @format: List of type specifiers (c, i, f, s)
- *
- * Description: Prints arguments based on format string.
- *              c: char, i: integer, f: float, s: string
- *              Strings print (nil) if NULL
- *              Ignores unknown specifiers
- *              Uses minimal control structures
+ * print_all - prints anything
+ * @format: a list of types of arguments passed to the function
  */
 void print_all(const char * const format, ...)
 {
-	va_list args;
-	unsigned int i = 0, j = 0;
-	char *str;
-	const char *sep = "";
+    va_list args;
+    int first = 1; /* Flag to check if it's the first argument */
+    char *str;
 
-	va_start(args, format);
+    va_start(args, format);
 
-	while (format && format[i])
-	{
-		switch (format[i])
-		{
-			case 'c':
-				printf("%s%c", sep, va_arg(args, int));
-				break;
-			case 'i':
-				printf("%s%d", sep, va_arg(args, int));
-				break;
-			case 'f':
-				printf("%s%f", sep, va_arg(args, double));
-				break;
-			case 's':
-				str = va_arg(args, char *);
-				if (!str)
-					str = "(nil)";
-				printf("%s%s", sep, str);
-				break;
-			default:
-				j++;
-				break;
-		}
-		sep = ", ";
-		i++;
-	}
+    for (int i = 0; format && format[i]; i++)
+    {
+        if (!first)
+        {
+            printf(", ");
+        }
+        first = 0; /* Set to false after the first argument */
 
-	va_end(args);
-	printf("\n");
+        switch (format[i])
+        {
+            case 'c':
+                printf("%c", va_arg(args, int));
+                break;
+            case 'i':
+                printf("%d", va_arg(args, int));
+                break;
+            case 'f':
+                printf("%f", va_arg(args, double));
+                break;
+            case 's':
+                str = va_arg(args, char *);
+                printf("%s", str ? str : "(nil)");
+                break;
+        }
+    }
+
+    va_end(args);
+    printf("\n");
 }
