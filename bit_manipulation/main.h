@@ -7,6 +7,7 @@ void print_binary(unsigned long int n);
 int _putchar(char c); /* _putchar function for character output */
 int get_bit(unsigned long int n, unsigned int index);
 int set_bit(unsigned long int *n, unsigned int index);
-int clear_bit(unsigned long int *n, unsigned int index); /* New function prototype */
+int clear_bit(unsigned long int *n, unsigned int index);
+unsigned int flip_bits(unsigned long int n, unsigned long int m); /* New function prototype */
 
 #endif /* MAIN_H */
