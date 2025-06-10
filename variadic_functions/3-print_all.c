@@ -10,7 +10,6 @@
  *              c: char, i: integer, f: float, s: string
  *              Strings print (nil) if NULL
  *              Ignores unknown specifiers
- *              Uses minimal control structures
  */
 void print_all(const char * const format, ...)
 {
@@ -18,6 +17,7 @@ void print_all(const char * const format, ...)
 	unsigned int i = 0, j = 0;
 	char *str;
 	const char *sep = "";
+	int printed = 0;
 
 	va_start(args, format);
 
@@ -27,24 +27,30 @@ void print_all(const char * const format, ...)
 		{
 			case 'c':
 				printf("%s%c", sep, va_arg(args, int));
+				printed = 1;
 				break;
 			case 'i':
 				printf("%s%d", sep, va_arg(args, int));
+				printed = 1;
 				break;
 			case 'f':
 				printf("%s%f", sep, va_arg(args, double));
+				printed = 1;
 				break;
 			case 's':
 				str = va_arg(args, char *);
 				if (!str)
 					str = "(nil)";
 				printf("%s%s", sep, str);
+				printed = 1;
 				break;
 			default:
+				i++;
 				j++;
-				break;
+				continue;
 		}
-		sep = ", ";
+		if (printed)
+			sep = ", ";
 		i++;
 	}
 
