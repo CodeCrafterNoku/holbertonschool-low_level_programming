@@ -3,13 +3,7 @@
 
 #include <stdarg.h>
 
-/**
- * sum_them_all - Sums all its parameters.
- * @n: The number of arguments.
- * @...: Variable arguments to sum.
- *
- * Return: The sum of all parameters, or 0 if n == 0.
- */
 int sum_them_all(const unsigned int n, ...);
+void print_numbers(const char *separator, const unsigned int n, ...);
 
 #endif /* VARIADIC_FUNCTIONS_H */
