@@ -1,9 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdio.h> /* For printf (used in main for context) */
-
-/* Function prototype */
-unsigned int binary_to_uint(const char *b);
+/* Function prototypes */
+void print_binary(unsigned long int n);
+int _putchar(char c); /* _putchar function for character output */
 
 #endif /* MAIN_H */
