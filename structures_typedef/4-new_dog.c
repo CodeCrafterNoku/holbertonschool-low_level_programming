@@ -1,39 +1,80 @@
 #include <stdlib.h>
-#include <string.h>
 #include "dog.h"
 
 /**
- * new_dog - Creates a new dog.
- * @name: Name of the dog.
- * @age: Age of the dog.
- * @owner: Owner of the dog.
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
  *
- * Return: Pointer to the new dog_t struct, or NULL on failure.
+ * Return: the length of the string
+ */
+unsigned int _strlen(char *s)
+{
+    unsigned int len = 0;
+
+    while (*s++)
+        len++;
+
+    return (len);
+}
+
+/**
+ * _strcpy - copies a string
+ * @dest: destination buffer
+ * @src: source string
+ *
+ * Return: pointer to dest
+ */
+char *_strcpy(char *dest, char *src)
+{
+    char *original_dest = dest;
+
+    while ((*dest++ = *src++))
+        ;
+
+    return (original_dest);
+}
+
+/**
+ * new_dog - creates a new dog
+ * @name: name of the dog
+ * @age: age of the dog
+ * @owner: owner of the dog
+ *
+ * Return: pointer to the new dog (Success), NULL otherwise
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-    dog_t *dog = malloc(sizeof(dog_t));
-    if (dog == NULL)
+    dog_t *new_dog;
+    unsigned int name_len, owner_len;
+
+    if (name == NULL || owner == NULL)
+        return (NULL);
+
+    new_dog = malloc(sizeof(dog_t));
+    if (new_dog == NULL)
+        return (NULL);
+
+    name_len = _strlen(name);
+    owner_len = _strlen(owner);
+
+    new_dog->name = malloc(sizeof(char) * (name_len + 1));
+    if (new_dog->name == NULL)
     {
-        return NULL;  /* Memory allocation failed */
+        free(new_dog);
+        return (NULL);
     }
 
-    dog->name = strdup(name);
-    if (dog->name == NULL)
+    new_dog->owner = malloc(sizeof(char) * (owner_len + 1));
+    if (new_dog->owner == NULL)
     {
-        free(dog);  /* Free previously allocated memory */
-        return NULL;  /* Memory allocation failed */
+        free(new_dog->name);
+        free(new_dog);
+        return (NULL);
     }
 
-    dog->age = age;
+    _strcpy(new_dog->name, name);
+    _strcpy(new_dog->owner, owner);
+    new_dog->age = age;
 
-    dog->owner = strdup(owner);
-    if (dog->owner == NULL)
-    {
-        free(dog->name);  /* Free name if owner allocation fails */
-        free(dog);  /* Free the dog struct */
-        return NULL;  /* Memory allocation failed */
-    }
-
-    return dog;
+    return (new_dog);
 }
