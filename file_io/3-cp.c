@@ -2,12 +2,12 @@
 #include "main.h"
 
 /**
-  * main - Entry point
-  * @argc: The argument count
-  * @argv: The argument vector
-  *
-  * Return: ...
-  */
+ * main - Entry point
+ * @argc: The argument count
+ * @argv: The argument vector
+ *
+ * Return: 0 on success
+ */
 int main(int argc, char **argv)
 {
 	if (argc != 3)
@@ -21,12 +21,12 @@ int main(int argc, char **argv)
 }
 
 /**
-  * copy_file - ...
-  * @src: ...
-  * @dest: ...
-  *
-  * Return: ...
-  */
+ * copy_file - Copies the content of a file to another file
+ * @src: The source file
+ * @dest: The destination file
+ *
+ * Return: void
+ */
 void copy_file(const char *src, const char *dest)
 {
 	int ofd, tfd, readed;
